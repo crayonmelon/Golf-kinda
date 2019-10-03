@@ -16,5 +16,6 @@ public class Camera : MonoBehaviour
         transform.position = smoothedPosition;
         transform.LookAt(target);
     }
+
 }
 

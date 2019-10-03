@@ -39,15 +39,15 @@ public class OrbitCamera : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            xSpread = xSpread + scrollSpeed;
-            zSpread = zSpread + scrollSpeed;
-            yOffset = yOffset + scrollSpeed;
+            xSpread = Mathf.Clamp(xSpread + scrollSpeed, 1, 30);
+            zSpread = Mathf.Clamp(zSpread + scrollSpeed, 1, 30);
+            yOffset = Mathf.Clamp(yOffset + scrollSpeed, 1, 30);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            xSpread = xSpread - scrollSpeed;
-            zSpread = zSpread - scrollSpeed;
-            yOffset = yOffset - scrollSpeed;
+            xSpread = Mathf.Clamp(xSpread - scrollSpeed, 1, 30);
+            zSpread = Mathf.Clamp(zSpread - scrollSpeed, 1, 30);
+            yOffset = Mathf.Clamp(yOffset - scrollSpeed, 1, 30);
         }
     }
 

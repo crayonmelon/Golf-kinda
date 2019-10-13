@@ -6,6 +6,11 @@ TagManager:
   tags:
   - GolfClub
   - EndBarrior
+  - Bounderies
+  - wind
+  - Trigger
+  - Terrain
+  - coin
   layers:
   - Default
   - TransparentFX

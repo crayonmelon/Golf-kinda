@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    int TotalScore;
-    int LevelScore;
-    
-    
+    #region Singleton
+
+    public static GameManager instance;
+
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
-        
+        PlayerPrefs.SetInt("LevelsUnlocked", 0);
+        PlayerPrefs.SetInt("TotalScore", 0);
+        PlayerPrefs.SetInt("LevelScore", 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #endregion
+
+    public GameObject player;
+
 }
+
+

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class EndLevel : MonoBehaviour
 {
     public int LevelNext;
@@ -11,13 +10,15 @@ public class EndLevel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            PlayerPrefs.SetInt("LevelsUnlocked", LevelNext);
-            SceneManager.LoadScene("LevelSelect");
-
             int score = PlayerPrefs.GetInt("LevelScore");
-            PlayerPrefs.SetInt("TotalScore", PlayerPrefs.GetInt("TotalScore") + score);
-          
+
+            if (LevelNext < PlayerPrefs.GetInt("LevelsUnlocked"))
+            {
+                PlayerPrefs.SetInt("LevelsUnlocked", LevelNext);
+
+            }
             print(PlayerPrefs.GetInt("LevelsUnlocked"));
+            SceneManager.LoadScene("LevelSelect");
         }
     }
 }

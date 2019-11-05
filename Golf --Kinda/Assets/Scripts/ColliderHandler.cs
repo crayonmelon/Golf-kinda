@@ -26,14 +26,24 @@ public class ColliderHandler : MonoBehaviour
         }
         if (collision.gameObject.tag == "GolfClub")
         {
-                print("its a hit");
+
 
                 Vector3 cam = collision.transform.forward;
                 Vector3 camFwd = new Vector3(cam.x, cam.y, cam.z);
                 rb.AddForce(camFwd * thrust, ForceMode.Impulse);
         }
 
-        
+        if (collision.gameObject.tag == "GolfClub2")
+        {
+            print("its a hit");
+
+            Vector3 cam = collision.transform.forward *-1;
+            Vector3 camFwd = new Vector3(cam.x, cam.y, cam.z);
+            rb.AddForce(camFwd * thrust, ForceMode.Impulse);
+        }
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)

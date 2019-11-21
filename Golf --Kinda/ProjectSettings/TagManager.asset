@@ -16,6 +16,9 @@ TagManager:
   - lb_groundTarget
   - lb_perchTarget
   - Cigs
+  - Frog
+  - FrogArea
+  - PlayerStart
   layers:
   - Default
   - TransparentFX

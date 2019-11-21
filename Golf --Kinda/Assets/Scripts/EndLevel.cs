@@ -10,9 +10,10 @@ public class EndLevel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            int score = PlayerPrefs.GetInt("LevelScore");
+            int check = PlayerPrefs.GetInt("LevelsUnlocked");
+            print(check);
 
-            if (LevelNext < PlayerPrefs.GetInt("LevelsUnlocked"))
+            if (LevelNext > check)
             {
                 PlayerPrefs.SetInt("LevelsUnlocked", LevelNext);
 

@@ -23,6 +23,8 @@ public class CigsNPCTrigger : MonoBehaviour
             TextPro.text = "Oh Jeez, Oh Dear, Oh thanks so much";
             canvas.GetComponent<Collectables>().cigsCollected = false;
             anim.SetBool("hasCig", true);
+            PlayerPrefs.SetInt("level1", PlayerPrefs.GetInt("level1")+ 1);
+            print(PlayerPrefs.GetInt("level1"));
         }
     }
 }

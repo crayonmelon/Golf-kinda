@@ -8,6 +8,7 @@ public class gameStart : MonoBehaviour
 
     void Start()
     {
+        StartingPoint = GameObject.FindGameObjectWithTag("PlayerStart");
         transform.position = StartingPoint.transform.position;
     }
 

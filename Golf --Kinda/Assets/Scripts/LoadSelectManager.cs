@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class LoadSelectManager : MonoBehaviour
 {
-    public GameObject Level0Button;
-    public GameObject Level1Button;
-    public GameObject Level2Button;
+    public GameObject[] levels;
 
     void Start()
     {
-        Level0Button.SetActive(false);
-        Level1Button.SetActive(false);
-        Level2Button.SetActive(false);
+        for(int i = 0; i < levels.Length; i++)
+        {
+            levels[i].SetActive(false);
 
-        if (PlayerPrefs.GetInt("LevelsUnlocked") >= 2)
-        {
-            Level2Button.SetActive(true);
-        }
-        if (PlayerPrefs.GetInt("LevelsUnlocked") >= 1)
-        {
-            Level1Button.SetActive(true);
-        }
-        if (PlayerPrefs.GetInt("LevelsUnlocked") >= 0)
-        {
-            Level0Button.SetActive(true);
+            if (PlayerPrefs.GetInt("LevelsUnlocked") >= i)
+            {
+                levels[i].SetActive(true);
+            }
         }
     }
 }

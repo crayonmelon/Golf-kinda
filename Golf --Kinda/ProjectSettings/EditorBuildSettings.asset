@@ -12,20 +12,29 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 68ab1f308249bdd4a830040f3688e01a
   - enabled: 1
-    path: Assets/Scenes/Level -2.unity
+    path: Assets/Scenes/LevelFrogTeam.unity
     guid: 64e0639bebd842c45bcc1216d6227833
   - enabled: 1
-    path: Assets/Scenes/Level -1.unity
+    path: Assets/Scenes/LevelTunnel.unity
     guid: 889b37ecf9c7706448a1babf86e2cfea
-  - enabled: 1
-    path: Assets/Scenes/Level0.unity
+  - enabled: 0
+    path: 
     guid: 87840e2e970ee564789f09c968803093
-  - enabled: 1
-    path: Assets/Scenes/Level1.unity
+  - enabled: 0
+    path: 
     guid: 608eca292fa9ef54ab7405eb46f9f57a
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Level2Squiggles.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/LevelBridge.unity
+    guid: 792f1d6ccbbf03b4c8fd583099b031ff
+  - enabled: 1
+    path: Assets/Scenes/LevelRoad.unity
+    guid: 8354cfdb3ed521b4f8686015c2b8df9f
+  - enabled: 1
+    path: Assets/Scenes/LevelMaze.unity
+    guid: 65518dc72cd76334f806a86caf4236a7
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 22c23ac942251804fb558a5e8b65a82d

@@ -1,22 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
+    private AudioSource aS;
     public float speed = 10;
     private Rigidbody rb;
     public float maxSpeed = 50f;
+    public float maxSongPitch = 1.5f;
+    public float minSongPitch = 0.5f;
 
     public Transform Target;
+    public Scrollbar VolScrol;
+
+    float musicPitch;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        aS = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
     {
+        aS.volume = VolScrol.value;
+        print(VolScrol.value);
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -36,5 +46,16 @@ public class PlayerControls : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
 
+        musicPitch = Mathf.Clamp(rb.velocity.magnitude / 20, 0.5f, 3f);
+
+        print(musicPitch);
+        if(musicPitch > 1)
+        {
+            aS.pitch = maxSongPitch;
+        }
+        else
+        {
+            aS.pitch = Mathf.Clamp(rb.velocity.magnitude / 20, minSongPitch, maxSongPitch);
+        }        
     }
 }

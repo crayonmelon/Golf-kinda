@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class gameStart : MonoBehaviour
 {
-    public GameObject StartingPoint;
+    private GameObject StartingPoint;
 
     void Start()
     {

@@ -21,4 +21,10 @@ public class MoveTowardsPlayer : MonoBehaviour
         agent.destination = Target.transform.position;
 
     }
+
+
+    public void Patrol()
+    {
+
+    }
 }

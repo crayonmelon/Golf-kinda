@@ -19,6 +19,7 @@ TagManager:
   - Frog
   - FrogArea
   - PlayerStart
+  - OJWaypoint
   layers:
   - Default
   - TransparentFX

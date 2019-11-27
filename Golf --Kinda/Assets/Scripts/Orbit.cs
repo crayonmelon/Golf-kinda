@@ -11,9 +11,9 @@ public class Orbit : MonoBehaviour
 
     public float rotSpeed;
 
-    float timer = 0;
+    public float timer = 0;
 
-    void Update()
+    void FixedUpdate()
     {
 
         Rotate();

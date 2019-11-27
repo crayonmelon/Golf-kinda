@@ -10,10 +10,13 @@ public class CigsNPCTrigger : MonoBehaviour
     public GameObject canvas;
     public TextMeshProUGUI TextPro;
     Animator anim;
+    [TextArea]
+    public string Words;
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        TextPro.text = Words;
     }
 
     private void OnTriggerEnter(Collider other)

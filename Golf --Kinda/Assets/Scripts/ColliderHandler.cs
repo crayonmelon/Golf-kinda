@@ -6,12 +6,14 @@ public class ColliderHandler : MonoBehaviour
 {
     public float thrust = 15f;
     private Rigidbody rb;
-    public GameObject StartingPoint;
+    private GameObject StartingPoint;
     public float windSpeed = 10f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        StartingPoint = GameObject.FindGameObjectWithTag("PlayerStart");
+        transform.position = StartingPoint.transform.position;
     }
     private void OnCollisionEnter(Collision collision)
     {

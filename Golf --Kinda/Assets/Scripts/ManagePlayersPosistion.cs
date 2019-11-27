@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ManagePlayersPosistion : MonoBehaviour
 {
-    public GameObject[] startingPoints;
+    private GameObject[] startingPoints;
     void Start()
     {
-        int randomNumer = Random.Range(1, startingPoints.Length);
+        startingPoints = GameObject.FindGameObjectsWithTag("PlayerStart");
+        int randomNumer = Random.Range(0, startingPoints.Length);
 
         gameObject.transform.position = startingPoints[randomNumer].transform.position;
     }

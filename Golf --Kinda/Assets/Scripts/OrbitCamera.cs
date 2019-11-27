@@ -1,49 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrbitCamera : MonoBehaviour
 {
-    public float xSpread = 10;
-    public float zSpread = 10;
-    public float yOffset = 6;
-    public float scrollSpeed = 2f;
+    private float xSpread = 10;
+    private float zSpread = 10;
+    private float yOffset = 6;
+
+    public Toggle OneHandedCameraToggle;
+    public Toggle InvertToggle;
     public Transform centerPoint;
+    private Transform Pointer;
 
     float rotSpeed;
+    public float timer = 0;
+
+    [Header("Camera Speeds")]
     public float horizontalSpeed = 2.0f;
     public float verticalSpeed = .1f;
     public float smoothSpeed = 0.25f;
-    float timer = 0;
+    public float scrollSpeed = 2f;
 
+    private float countDown = 2;
+
+    [Header("Camera Attributes for Options")]
+
+    public bool CameraReset = false;
+    public bool OneHandedMode = false;
+    public bool InvertScroll = false;
+    int scrollInverter = 1;
+
+    private void Start()
+    {
+        Pointer = centerPoint.GetChild(0);
+    }
 
     void FixedUpdate()
     {
 
-        rotSpeed = horizontalSpeed * Input.GetAxis("Mouse X");
+        if (OneHandedCameraToggle.isOn)
+        {
+            OneHandedMode = true;
+        }
+        else
+        {
+            OneHandedMode = false;
+        }
 
-        // if (Input.GetAxis("Mouse Y") > 0){
-        //      yOffset = yOffset + verticalSpeed;
-        //  }
-        //   else if (Input.GetAxis("Mouse Y") < 0)
-        //   {
-        //       yOffset = yOffset - verticalSpeed;
-        //   }
-       // xSpread = Mathf.Clamp(10f, 1, 30);
-       // zSpread = Mathf.Clamp(10f, 1, 30);
-       // yOffset = Mathf.Clamp(10f, 1, 30);
+        if (InvertToggle.isOn)
+        {
+            InvertScroll = true;
+        }
+        else
+        {
+            InvertScroll = false;
+        }
 
-        Rotate();
-        transform.LookAt(centerPoint);
-        timer += Time.deltaTime * rotSpeed;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        countDown -= 1 * Time.deltaTime;
+
+       
+        if(OneHandedMode == true)
+        {
+            oneHandMode();
+        }
+        else
+        {
+            RotateNormal();
+
+        }
+
+        if(InvertScroll ==true)
+        {
+            scrollInverter = -1;
+        }
+        else
+        {
+            scrollInverter = 1;
+        }
+
+
+        if (Input.GetAxis("Mouse ScrollWheel")* scrollInverter > 0)
         {
             xSpread = Mathf.Clamp(xSpread + scrollSpeed, 4, 50);
             zSpread = Mathf.Clamp(zSpread + scrollSpeed, 4, 50);
             yOffset = Mathf.Clamp(yOffset + scrollSpeed, 1, 46);
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if (Input.GetAxis("Mouse ScrollWheel")* scrollInverter < 0)
         {
             xSpread = Mathf.Clamp(xSpread - scrollSpeed, 4, 50);
             zSpread = Mathf.Clamp(zSpread - scrollSpeed, 4, 50);
@@ -51,10 +96,25 @@ public class OrbitCamera : MonoBehaviour
         }
     }
 
-    void Rotate()
+    void RotateNormal()
     {
-        float x = -Mathf.Cos(timer) * xSpread;
-        float z = Mathf.Sin(timer) * zSpread;
+        transform.LookAt(centerPoint);
+        if(Input.GetAxis("Mouse X") > 0 || Input.GetAxis("Mouse X") < 0)
+        {
+             timer += Time.deltaTime * rotSpeed;
+
+            
+            rotSpeed =  horizontalSpeed * Input.GetAxis("Mouse X");
+        }
+        else if(countDown <=0 && CameraReset == true)
+        {
+
+            timer = Pointer.GetComponent<Orbit>().timer;
+            countDown = 2;
+        }
+
+        float x = Mathf.Cos(timer) * xSpread;
+        float z = -Mathf.Sin(timer) * zSpread;
         Vector3 pos = new Vector3(x, yOffset, z);
         Vector3 desiredPosition =  pos + centerPoint.position;
 
@@ -62,4 +122,18 @@ public class OrbitCamera : MonoBehaviour
         transform.position = smoothedPosition;
 
     }
+
+    void oneHandMode()
+    {
+        timer = Mathf.Lerp(timer, Pointer.GetComponent<Orbit>().timer*-1, smoothSpeed);
+        transform.LookAt(centerPoint);
+        float x = -Mathf.Cos(timer) * xSpread;
+        float z = Mathf.Sin(timer) * zSpread;
+        Vector3 pos = new Vector3(-x, yOffset, z);
+        Vector3 desiredPosition = pos + centerPoint.position;
+
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = smoothedPosition;
+    }
+
 }

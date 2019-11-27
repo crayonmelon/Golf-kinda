@@ -9,6 +9,8 @@ public class GenerateMaze : MonoBehaviour
     public GameObject wall;
     public GameObject start;
     public GameObject enemy;
+    public GameObject OJWaypoint;
+    public GameObject EndLevel;
     public TextAsset[] textFile;
     public int MapSize = 4;
     public int[,] worldMap = new int[,]
@@ -72,17 +74,30 @@ public class GenerateMaze : MonoBehaviour
                 GameObject t = (GameObject)(Instantiate(wall, new Vector3(50 - column * 10.0f, 1.5f, 50 - row * 10.0f), Quaternion.identity));
 
             }
-            if(s[i] == '2')
+            if(s[i] == 'S')
             {
                 column = i % MapSize;
                 row = i / MapSize;
                 GameObject t = (GameObject)(Instantiate(start, new Vector3(50 - column * 10.0f, 1.5f, 50 - row * 10.0f), Quaternion.identity));
             }
-            if(s[i] == '3')
+            if(s[i] == 'J')
             {
                 column = i % MapSize;
                 row = i / MapSize;
                 GameObject t = (GameObject)(Instantiate(enemy, new Vector3(50 - column * 10.0f, 1.5f, 50 - row * 10.0f), Quaternion.identity));
+            }
+            if(s[i] == 'W')
+            {
+                column = i % MapSize;
+                row = i / MapSize;
+                GameObject t = (GameObject)(Instantiate(OJWaypoint, new Vector3(50 - column * 10.0f, 1.5f, 50 - row * 10.0f), Quaternion.identity));
+            }
+
+            if (s[i] == 'E')
+            {
+                column = i % MapSize;
+                row = i / MapSize;
+                GameObject t = (GameObject)(Instantiate(EndLevel, new Vector3(50 - column * 10.0f, 1.5f, 50 - row * 10.0f), Quaternion.identity));
             }
         }
     }
